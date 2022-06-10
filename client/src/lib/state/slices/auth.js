@@ -4,10 +4,13 @@ import authService from '../../api/auth';
 
 const userFromStorage = JSON.parse(localStorage.getItem('user'))?.user || null;
 
+const isDarkMode = JSON.parse(localStorage.getItem('isDarkMode')) || false;
+
 const initialState = {
     loading: 'idle',
     isAuthenticated: !!userFromStorage,
     user: userFromStorage ? userFromStorage : null,
+    darkMode: isDarkMode,
     error: null,
 };
 
@@ -79,6 +82,10 @@ const authSlice = createSlice({
             state.isAuthenticated = false;
             state.user = null;
         },
+        setDarkMode: (state, action) => {
+            state.darkMode = action.payload;
+            localStorage.setItem('isDarkMode', JSON.stringify(action.payload));
+        },
     },
     extraReducers: (builder) => {
         builder
@@ -110,6 +117,7 @@ const authSlice = createSlice({
     },
 });
 
-export const { resetError, setError, resetAuth } = authSlice.actions;
+export const { resetError, setError, resetAuth, setDarkMode } =
+    authSlice.actions;
 
 export default authSlice.reducer;

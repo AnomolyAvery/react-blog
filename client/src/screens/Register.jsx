@@ -56,13 +56,13 @@ const Register = () => {
 
     return (
         <div>
-            <div className="mx-auto lg:w-1/2 bg-white rounded shadow">
+            <div className="mx-auto lg:w-1/2 bg-white dark:bg-neutral-900 rounded shadow">
                 <div className="container mx-auto px-4 py-8">
                     <div className="text-center">
-                        <h1 className="text-2xl font-semibold">
+                        <h1 className="text-2xl dark:text-white font-semibold">
                             Welcome to the Blog.
                         </h1>
-                        <p>
+                        <p className="dark:text-gray-300">
                             The Blog is a community of {usersCount} amazing
                             users.
                         </p>
@@ -82,7 +82,7 @@ const Register = () => {
                         <form onSubmit={handleSubmit}>
                             <div>
                                 <label
-                                    className="block text-sm font-medium text-gray-700"
+                                    className="block text-sm font-medium text-gray-700 dark:text-gray-300"
                                     htmlFor="email"
                                 >
                                     Email
@@ -91,7 +91,7 @@ const Register = () => {
                                     <input
                                         type={'email'}
                                         name="email"
-                                        className="shadow-sm focus:ring-blue-500 focus:border-blue-500 block w-full sm:text-sm border-gray-300 rounded-md"
+                                        className="dark:bg-neutral-800 dark:text-white shadow-sm focus:ring-blue-500 focus:border-blue-500 block w-full sm:text-sm border-gray-300 rounded-md"
                                         value={email}
                                         onChange={(e) =>
                                             setEmail(e.target.value)
@@ -101,7 +101,7 @@ const Register = () => {
                             </div>
                             <div className="mt-4">
                                 <label
-                                    className="block text-sm font-medium text-gray-700"
+                                    className="block text-sm font-medium text-gray-700 dark:text-gray-300"
                                     htmlFor="name"
                                 >
                                     Name
@@ -110,7 +110,7 @@ const Register = () => {
                                     <input
                                         type={'text'}
                                         name="name"
-                                        className="shadow-sm focus:ring-blue-500 focus:border-blue-500 block w-full sm:text-sm border-gray-300 rounded-md"
+                                        className="dark:bg-neutral-800 dark:text-white shadow-sm focus:ring-blue-500 focus:border-blue-500 block w-full sm:text-sm border-gray-300 rounded-md"
                                         value={name}
                                         onChange={(e) =>
                                             setName(e.target.value)
@@ -120,7 +120,7 @@ const Register = () => {
                             </div>
                             <div className="mt-4">
                                 <label
-                                    className="block text-sm font-medium text-gray-700"
+                                    className="block text-sm font-medium text-gray-700 dark:text-gray-300"
                                     htmlFor=""
                                 >
                                     Password
@@ -129,7 +129,7 @@ const Register = () => {
                                     <input
                                         type={'password'}
                                         name="password"
-                                        className="shadow-sm focus:ring-blue-500 focus:border-blue-500 block w-full sm:text-sm border-gray-300 rounded-md"
+                                        className="dark:bg-neutral-800 dark:text-white shadow-sm focus:ring-blue-500 focus:border-blue-500 block w-full sm:text-sm border-gray-300 rounded-md"
                                         value={password}
                                         onChange={(e) =>
                                             setPassword(e.target.value)
@@ -139,7 +139,7 @@ const Register = () => {
                             </div>
                             <div className="mt-4">
                                 <label
-                                    className="block text-sm font-medium text-gray-700"
+                                    className="block text-sm font-medium text-gray-700 dark:text-gray-300"
                                     htmlFor=""
                                 >
                                     Confirm Password
@@ -148,7 +148,7 @@ const Register = () => {
                                     <input
                                         type={'password'}
                                         name="password"
-                                        className="shadow-sm focus:ring-blue-500 focus:border-blue-500 block w-full sm:text-sm border-gray-300 rounded-md"
+                                        className="dark:bg-neutral-800 dark:text-white shadow-sm focus:ring-blue-500 focus:border-blue-500 block w-full sm:text-sm border-gray-300 rounded-md"
                                         value={passwordConfirm}
                                         onChange={(e) =>
                                             setPasswordConfirm(e.target.value)

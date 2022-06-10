@@ -1,5 +1,6 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import EmptyPosts from '../components/posts/EmptyPosts';
 import PostCard from '../components/posts/PostCard';
 import Spinner from '../components/Spinner';
 import { fetchPostsAsync } from '../lib/state/slices/posts';
@@ -36,6 +37,9 @@ const Home = () => {
                     </p>
                 </div>
             )}
+
+            {posts && posts.length === 0 && <EmptyPosts withButton />}
+
             {posts && (
                 <div className="flex flex-col gap-4">
                     {posts.map((post) => (

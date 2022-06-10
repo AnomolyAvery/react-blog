@@ -7,6 +7,7 @@ import {
 } from 'react-icons/fa';
 import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
+import EmptyPosts from '../../components/posts/EmptyPosts';
 import PostCard from '../../components/posts/PostCard';
 import Spinner from '../../components/Spinner';
 import {
@@ -58,7 +59,7 @@ const UserDetails = () => {
                     <div className="-mt-12 sm:-mt-16 sm:flex sm:items-end sm:space-x-5">
                         <div className="flex">
                             <img
-                                className="h-24 w-24 rounded-full ring-4 bg-white ring-white sm:h-32 sm:w-32"
+                                className="h-24 w-24 rounded-full ring-4 bg-white dark:bg-neutral-900 ring-white dark:ring-black sm:h-32 sm:w-32"
                                 src={getGravatarUrl(
                                     user?.email ?? 'test@test.com'
                                 )}
@@ -67,27 +68,29 @@ const UserDetails = () => {
                         </div>
                         <div className="mt-6 sm:flex-1 sm:min-w-0 sm:flex sm:items-center sm:justify-end sm:space-x-6 sm:pb-1">
                             <div className="sm:hidden md:block mt-6 min-w-0 flex-1">
-                                <h1 className="text-2xl font-bold text-gray-900 truncate">
+                                <h1 className="text-2xl font-bold text-gray-900 dark:text-white truncate">
                                     {user?.name}
                                 </h1>
-                                <p className="text-gray-500">Bio...</p>
+                                <p className="text-gray-500 dark:text-gray-300">
+                                    Bio...
+                                </p>
                             </div>
                         </div>
                     </div>
                     <div className="hidden sm:block md:hidden mt-6 min-w-0 flex-1">
-                        <h1 className="text-2xl font-bold text-gray-900 truncate">
+                        <h1 className="text-2xl font-bold text-gray-900 dark:text-white truncate">
                             {user?.name}
                         </h1>
-                        <p className="mt-1 text-sm font-medium text-gray-600 truncate">
+                        <p className="mt-1 text-sm font-medium text-gray-600 dark:text-gray-300 truncate">
                             Bio...
                         </p>
                     </div>
                 </div>
             </div>
             <div className="mt-6">
-                <div className="bg-white rounded-lg py-4 px-6">
+                <div className="bg-white dark:bg-neutral-900 rounded-lg py-4 px-6">
                     <div className="flex gap-4 flex-wrap items-center justify-between">
-                        <h2 className="text-2xl font-bold text-gray-900">
+                        <h2 className="text-2xl font-bold text-gray-900 dark:text-white">
                             Posts
                         </h2>
 
@@ -112,7 +115,10 @@ const UserDetails = () => {
                     </div>
                 ) : (
                     <div className="mt-6 flex flex-col gap-2">
-                        {posts.map((post) => (
+                        {posts && posts.length === 0 && (
+                            <EmptyPosts text="This user does not have any posts" />
+                        )}
+                        {posts?.map((post) => (
                             <PostCard key={post.id} post={post} />
                         ))}
                     </div>

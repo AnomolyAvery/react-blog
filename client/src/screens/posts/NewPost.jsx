@@ -6,6 +6,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { createPostAsync, resetCreate } from '../../lib/state/slices/posts';
 import { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
+import AuthRequired from '../../components/AuthRequired';
 
 const NewPost = () => {
     const [title, setTitle] = useState('');
@@ -38,10 +39,10 @@ const NewPost = () => {
     const mdParser = new MarkdownIt();
 
     return (
-        <div>
-            <div className="bg-white overflow-hidden shadow rounded-lg">
+        <AuthRequired>
+            <div className="bg-white dark:bg-neutral-900 overflow-hidden shadow rounded-lg">
                 <div className="px-4 py-5 sm:p-6">
-                    <h3 className="text-lg leading-6 font-medium text-gray-900 mb-4">
+                    <h3 className="text-lg leading-6 font-medium text-gray-900 dark:text-white mb-4">
                         New Post
                     </h3>
 
@@ -49,7 +50,7 @@ const NewPost = () => {
                         <div>
                             <label
                                 htmlFor="email"
-                                className="block text-sm font-medium text-gray-700"
+                                className="block text-sm font-medium text-gray-700 dark:text-gray-300"
                             >
                                 Title
                             </label>
@@ -58,7 +59,7 @@ const NewPost = () => {
                                     type="text"
                                     name="email"
                                     id="email"
-                                    className="shadow-sm focus:ring-blue-500 focus:border-blue-500 block w-full sm:text-sm border-gray-300 rounded-md"
+                                    className="dark:bg-neutral-800 dark:text-white shadow-sm focus:ring-blue-500 focus:border-blue-500 block w-full sm:text-sm border-gray-300 rounded-md"
                                     placeholder="My first post"
                                     value={title}
                                     onChange={(e) => setTitle(e.target.value)}
@@ -68,7 +69,7 @@ const NewPost = () => {
                         <div className="mt-4 w-full">
                             <label
                                 htmlFor="content"
-                                className="block text-sm font-medium text-gray-700"
+                                className="block text-sm font-medium text-gray-700 dark:text-gray-300"
                             >
                                 Content
                             </label>
@@ -76,7 +77,6 @@ const NewPost = () => {
                                 style={{ height: '500px', width: '100%' }}
                                 renderHTML={(text) => mdParser.render(text)}
                                 onChange={(e) => setContent(e.text)}
-                                markdownClass="prose"
                             />
                         </div>
                         <div className="mt-4">
@@ -90,7 +90,7 @@ const NewPost = () => {
                     </form>
                 </div>
             </div>
-        </div>
+        </AuthRequired>
     );
 };
 
