@@ -6,15 +6,15 @@ import { getGravatarUrl } from '../../lib/utils/avatar';
 
 const PostCard = ({ post }) => {
     return (
-        <div className="bg-gray-50 overflow-hidden shadow rounded-lg">
+        <div className="bg-gray-50 dark:bg-neutral-900 overflow-hidden shadow rounded-lg">
             <div className="px-4 py-5 sm:p-6">
                 <Link
                     to={`/posts/${post.id}`}
-                    className="text-lg leading-6 font-medium text-gray-900 hover:text-gray-600"
+                    className="text-lg leading-6 font-medium text-gray-900 dark:text-white hover:text-gray-600 dark:hover:text-gray-300"
                 >
                     {post?.title}
                 </Link>
-                <p className="mt-1 text-base leading-6 text-gray-500">
+                <p className="mt-1 text-base leading-6 text-gray-500 dark:text-gray-300">
                     {post?.content?.substring(0, 100) + '...'}
                 </p>
 
@@ -34,10 +34,10 @@ const PostCard = ({ post }) => {
                                 to={`/users/${post?.user?._id}`}
                                 className="ml-3"
                             >
-                                <p className="text-base leading-6 font-medium text-gray-900">
+                                <p className="text-base leading-6 font-medium text-gray-900 dark:text-white">
                                     {post?.user?.name}
                                 </p>
-                                <div className="flex text-sm leading-5 text-gray-500">
+                                <div className="flex text-sm leading-5 text-gray-500 dark:text-gray-300">
                                     <time dateTime={post?.createdAt}>
                                         {new Date(
                                             post?.createdAt

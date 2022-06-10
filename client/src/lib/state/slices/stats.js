@@ -17,10 +17,6 @@ export const fetchAppStatsAsync = createAsyncThunk(
 
             const stats = resp.data;
 
-            if (!stats.users || !stats.posts) {
-                return thunkApi.rejectWithValue('Invalid stats');
-            }
-
             return thunkApi.fulfillWithValue(stats);
         } catch (err) {
             const msg = getErrorMessage(err);

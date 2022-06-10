@@ -57,23 +57,25 @@ const PostDetails = () => {
         <div>
             <div className="max-w-4xl mx-auto flex justify-center flex-wrap gap-4">
                 <div className="flex-grow">
-                    <div className="w-full bg-white overflow-hidden shadow rounded-lg">
+                    <div className="w-full bg-white dark:bg-neutral-900 overflow-hidden shadow rounded-lg">
                         <div className="px-4 py-5 sm:p-6">
                             {loading === 'pending' && !post && (
                                 <div className="text-center">
-                                    <div className="text-gray-500">
+                                    <div className="text-gray-500 dark:text-gray-300">
                                         Loading post...
                                     </div>
                                 </div>
                             )}
                             {error && !post && (
                                 <div className="text-center">
-                                    <div className="text-gray-500">{error}</div>
+                                    <div className="text-gray-500 dark:text-gray-300">
+                                        {error}
+                                    </div>
                                 </div>
                             )}
                             {post && (
                                 <>
-                                    <h1 className="text-2xl font-semibold text-center leading-tight">
+                                    <h1 className="text-2xl dark:text-white font-semibold text-center leading-tight">
                                         {post?.title}
                                     </h1>
                                     <div className="mt-3 text-center flex justify-center items-center gap-4">
@@ -91,14 +93,14 @@ const PostDetails = () => {
                                                     to={`/users/${
                                                         post?.user?._id ?? ''
                                                     }`}
-                                                    className="text-gray-900 hover:text-gray-600 font-bold"
+                                                    className="text-gray-900 dark:text-white hover:text-gray-600 dark:hover:text-gray-300 font-bold"
                                                 >
                                                     {post.user?.name}
                                                 </Link>
                                             </div>
                                         </div>
                                         <div>
-                                            <div className="text-gray-500">
+                                            <div className="text-gray-500 dark:text-gray-300">
                                                 {new Date(
                                                     post.createdAt
                                                 ).toDateString()}
@@ -106,7 +108,7 @@ const PostDetails = () => {
                                         </div>
                                         <div>
                                             <div className="inline-flex items-center gap-2">
-                                                <span className="text-lg">
+                                                <span className="text-lg dark:text-gray-300">
                                                     {post?.likes}
                                                 </span>
                                                 <FaHeart className="h-6 w-6 text-gray-500" />
@@ -114,7 +116,7 @@ const PostDetails = () => {
                                         </div>
                                     </div>
                                     <div className="mt-5">
-                                        <div className="prose lg:prose-xl">
+                                        <div className="prose dark:prose-invert lg:prose-xl">
                                             <div
                                                 dangerouslySetInnerHTML={{
                                                     __html: markdownIt.render(
@@ -129,12 +131,12 @@ const PostDetails = () => {
                         </div>
                     </div>
                     <div className="mt-4" aria-labelledby="notes-title">
-                        <div className="bg-white shadow sm:rounded-lg sm:overflow-hidden">
-                            <div className="divide-y divide-gray-200">
+                        <div className="bg-white dark:bg-neutral-900 shadow sm:rounded-lg sm:overflow-hidden">
+                            <div className="divide-y divide-gray-200 dark:divide-neutral-700">
                                 <div className="px-4 py-5 sm:px-6">
                                     <h2
                                         id="notes-title"
-                                        className="text-lg font-medium text-gray-900"
+                                        className="text-lg font-medium text-gray-900 dark:text-white"
                                     >
                                         Comments
                                     </h2>
@@ -158,7 +160,7 @@ const PostDetails = () => {
                                                         <div className="text-sm">
                                                             <a
                                                                 href="#"
-                                                                className="font-medium text-gray-900"
+                                                                className="font-medium text-gray-900 dark:text-white"
                                                             >
                                                                 {
                                                                     comment
@@ -167,7 +169,7 @@ const PostDetails = () => {
                                                                 }
                                                             </a>
                                                         </div>
-                                                        <div className="mt-1 text-sm text-gray-700">
+                                                        <div className="mt-1 text-sm text-gray-700 dark:text-gray-100">
                                                             <p>
                                                                 {
                                                                     comment.content
@@ -175,7 +177,7 @@ const PostDetails = () => {
                                                             </p>
                                                         </div>
                                                         <div className="mt-2 text-sm space-x-2">
-                                                            <span className="text-gray-500 font-medium">
+                                                            <span className="text-gray-500 dark:text-gray-300 font-medium">
                                                                 {new Date(
                                                                     comment.createdAt
                                                                 ).toDateString()}
@@ -189,7 +191,7 @@ const PostDetails = () => {
                                 </div>
                             </div>
                             {isAuthenticated && (
-                                <div className="bg-gray-50 px-4 py-6 sm:px-6">
+                                <div className="bg-gray-50 dark:bg-neutral-800 px-4 py-6 sm:px-6">
                                     <div className="flex space-x-3">
                                         <div className="flex-shrink-0">
                                             <img

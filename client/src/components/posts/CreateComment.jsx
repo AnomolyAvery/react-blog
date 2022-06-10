@@ -38,7 +38,7 @@ const CreateComment = ({ postId }) => {
                     id="comment"
                     name="comment"
                     rows={3}
-                    className="shadow-sm block w-full focus:ring-blue-500 focus:border-blue-500 sm:text-sm border border-gray-300 rounded-md"
+                    className="dark:bg-neutral-900 dark:text-white shadow-sm block w-full focus:ring-blue-500 focus:border-blue-500 sm:text-sm border border-gray-300 rounded-md"
                     placeholder="Add a note"
                     value={comment}
                     onChange={(e) => setComment(e.target.value)}
