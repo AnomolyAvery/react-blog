@@ -3,7 +3,9 @@ import MarkdownIt from 'markdown-it';
 import MdEditor from 'react-markdown-editor-lite';
 import 'react-markdown-editor-lite/lib/index.css';
 import { useDispatch, useSelector } from 'react-redux';
-import { createPostAsync } from '../../lib/state/slices/posts';
+import { createPostAsync, resetCreate } from '../../lib/state/slices/posts';
+import { useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 const NewPost = () => {
     const [title, setTitle] = useState('');
@@ -11,7 +13,16 @@ const NewPost = () => {
 
     const dispatch = useDispatch();
 
-    const {} = useSelector((state) => state.posts);
+    const { error, createdPostId } = useSelector((state) => state.posts);
+
+    const navigate = useNavigate();
+
+    useEffect(() => {
+        if (createdPostId) {
+            dispatch(resetCreate());
+            navigate(`/posts/${createdPostId}`);
+        }
+    }, [createdPostId]);
 
     const handleSubmit = (e) => {
         e.preventDefault();

@@ -111,7 +111,7 @@ const UserDetails = () => {
                         <Spinner size={'lg'} />
                     </div>
                 ) : (
-                    <div className="mt-6">
+                    <div className="mt-6 flex flex-col gap-2">
                         {posts.map((post) => (
                             <PostCard key={post.id} post={post} />
                         ))}

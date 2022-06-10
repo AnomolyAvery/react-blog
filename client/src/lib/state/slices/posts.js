@@ -9,6 +9,7 @@ const initialState = {
     posts: [],
     likedPosts: null,
     post: null,
+    createdPostId: null,
 };
 
 export const createPostAsync = createAsyncThunk(
@@ -50,10 +51,6 @@ export const fetchPostsAsync = createAsyncThunk(
     async (params, thunkApi) => {
         try {
             const payload = await postService.fetch(params);
-
-            if (!payload.length) {
-                return thunkApi.rejectWithValue('Invalid posts');
-            }
 
             return thunkApi.fulfillWithValue(payload);
         } catch (err) {
@@ -128,6 +125,9 @@ const postsSlice = createSlice({
         setError: (state, action) => {
             state.error = action.payload;
         },
+        resetCreate: (state) => {
+            state.createdPostId = null;
+        },
     },
     extraReducers: (builder) => {
         builder
@@ -137,6 +137,7 @@ const postsSlice = createSlice({
             .addCase(createPostAsync.fulfilled, (state, action) => {
                 state.loading = 'idle';
                 state.posts = [action.payload, ...state.posts];
+                state.createdPostId = action.payload.id;
             })
             .addCase(createPostAsync.rejected, (state, action) => {
                 state.loading = 'idle';
@@ -219,6 +220,6 @@ const postsSlice = createSlice({
     },
 });
 
-export const { setError } = postsSlice.actions;
+export const { setError, resetCreate } = postsSlice.actions;
 
 export default postsSlice.reducer;

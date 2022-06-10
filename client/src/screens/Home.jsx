@@ -17,38 +17,14 @@ function classNames(...classes) {
     return classes.filter(Boolean).join(' ');
 }
 
-const Sidebar = () => {
-    return (
-        <nav className="space-y-1" aria-label="Sidebar">
-            {navigation.map((item) => (
-                <a
-                    key={item.name}
-                    href={item.href}
-                    className={classNames(
-                        item.current
-                            ? 'bg-gray-100 text-gray-900'
-                            : 'text-gray-600 hover:bg-gray-50 hover:text-gray-900',
-                        'flex items-center px-3 py-2 text-sm font-medium rounded-md'
-                    )}
-                    aria-current={item.current ? 'page' : undefined}
-                >
-                    <span className="truncate">#{item.name.toLowerCase()}</span>
-                </a>
-            ))}
-        </nav>
-    );
-};
-
 const Home = () => {
     const { posts, loading } = useSelector((state) => state.posts);
 
     const dispatch = useDispatch();
 
     useEffect(() => {
-        if (posts.length === 0 && loading !== 'pending') {
-            dispatch(fetchPostsAsync());
-        }
-    }, [posts]);
+        dispatch(fetchPostsAsync());
+    }, []);
 
     return (
         <div>

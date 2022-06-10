@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { useParams } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 import MarkdownIt from 'markdown-it';
 import HeartButton from '../../components/posts/HeartButton';
 import { getGravatarUrl } from '../../lib/utils/avatar';
@@ -36,7 +36,7 @@ const PostDetails = () => {
     const markdownIt = new MarkdownIt();
 
     useEffect(() => {
-        if (postId && !post && loading !== 'pending') {
+        if (postId && loading !== 'pending') {
             dispatch(fetchPostByIdAsync(postId));
         }
     }, [postId]);
@@ -87,9 +87,14 @@ const PostDetails = () => {
                                             />
 
                                             <div className="ml-2">
-                                                <div className="text-gray-900 font-bold">
+                                                <Link
+                                                    to={`/users/${
+                                                        post?.user?._id ?? ''
+                                                    }`}
+                                                    className="text-gray-900 hover:text-gray-600 font-bold"
+                                                >
                                                     {post.user?.name}
-                                                </div>
+                                                </Link>
                                             </div>
                                         </div>
                                         <div>
