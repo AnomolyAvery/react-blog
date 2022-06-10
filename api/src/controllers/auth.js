@@ -37,6 +37,12 @@ const login = async (req, res) => {
 
         const token = jwtService.getAccessToken(user);
 
+        if (!token) {
+            return res.status(500).json({
+                message: 'Error creating token',
+            });
+        }
+
         return res.status(200).json({
             token: token,
             user: {
@@ -88,8 +94,14 @@ const register = async (req, res) => {
 
         const token = jwtService.getAccessToken(createdUser);
 
+        if (!token) {
+            return res.status(500).json({
+                message: 'Error creating token',
+            });
+        }
+
         return res.status(201).json({
-            token,
+            token: token,
             user: {
                 id: createdUser._id,
                 name: createdUser.name,

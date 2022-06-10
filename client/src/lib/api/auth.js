@@ -38,7 +38,18 @@ const register = async (name, email, password) => {
         password,
     });
 
-    return resp.data;
+    const token = resp.data.token;
+
+    if (token) {
+        const userInfo = {
+            user: resp.data.user,
+            token: token,
+        };
+
+        localStorage.setItem('user', JSON.stringify(userInfo));
+    }
+
+    return resp.data.user;
 };
 
 const me = async () => {

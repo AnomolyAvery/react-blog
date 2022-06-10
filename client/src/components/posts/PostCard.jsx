@@ -12,10 +12,10 @@ const PostCard = ({ post }) => {
                     to={`/posts/${post.id}`}
                     className="text-lg leading-6 font-medium text-gray-900 hover:text-gray-600"
                 >
-                    {post.title}
+                    {post?.title}
                 </Link>
                 <p className="mt-1 text-base leading-6 text-gray-500">
-                    {post.content.substring(0, 100) + '...'}
+                    {post?.content?.substring(0, 100) + '...'}
                 </p>
 
                 <div className="mt-5">
@@ -31,7 +31,7 @@ const PostCard = ({ post }) => {
                                 />
                             </div>
                             <Link
-                                to={`/users/${post.user._id}`}
+                                to={`/users/${post?.user?._id}`}
                                 className="ml-3"
                             >
                                 <p className="text-base leading-6 font-medium text-gray-900">

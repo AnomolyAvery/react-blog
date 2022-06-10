@@ -1,10 +1,7 @@
 const jwt = require('jsonwebtoken');
+const config = require('../core/config');
 
 const getAccessToken = (user) => {
-    if (!user || !user.id) {
-        return null;
-    }
-
     const payload = {
         id: user.id,
         email: user.email,
@@ -12,7 +9,7 @@ const getAccessToken = (user) => {
         role: user.role,
     };
 
-    return jwt.sign(payload, process.env.JWT_SECRET, {
+    return jwt.sign(payload, config.jwtSecret, {
         expiresIn: '1h',
     });
 };

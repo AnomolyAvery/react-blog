@@ -117,7 +117,9 @@ const createPost = async (req, res) => {
             user: req.user.id,
         });
 
-        return res.status(201).json(post);
+        return res.status(201).json({
+            id: post._id,
+        });
     } catch (err) {
         return res.status(500).json({
             message: err.message,

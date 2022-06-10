@@ -136,7 +136,6 @@ const postsSlice = createSlice({
             })
             .addCase(createPostAsync.fulfilled, (state, action) => {
                 state.loading = 'idle';
-                state.posts = [action.payload, ...state.posts];
                 state.createdPostId = action.payload.id;
             })
             .addCase(createPostAsync.rejected, (state, action) => {

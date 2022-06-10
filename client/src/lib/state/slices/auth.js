@@ -45,6 +45,8 @@ export const registerAsync = createAsyncThunk(
                 user.password
             );
 
+            console.log(payload);
+
             if (
                 !payload.id ||
                 !payload.name ||
