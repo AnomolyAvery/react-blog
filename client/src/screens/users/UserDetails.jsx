@@ -46,7 +46,7 @@ const UserDetails = () => {
         return Math.floor(postCount / 10) + 1;
     };
 
-    return (
+    return user ? (
         <div>
             <div>
                 <div>
@@ -124,6 +124,10 @@ const UserDetails = () => {
                     </div>
                 )}
             </div>
+        </div>
+    ) : (
+        <div className="flex justify-center items-center">
+            <Spinner />
         </div>
     );
 };
