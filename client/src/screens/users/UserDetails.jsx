@@ -72,7 +72,7 @@ const UserDetails = () => {
                                     {user?.name}
                                 </h1>
                                 <p className="text-gray-500 dark:text-gray-300">
-                                    Bio...
+                                    {user?.biography}
                                 </p>
                             </div>
                         </div>
@@ -82,7 +82,7 @@ const UserDetails = () => {
                             {user?.name}
                         </h1>
                         <p className="mt-1 text-sm font-medium text-gray-600 dark:text-gray-300 truncate">
-                            Bio...
+                            {user?.biography}
                         </p>
                     </div>
                 </div>

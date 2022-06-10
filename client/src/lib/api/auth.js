@@ -58,9 +58,19 @@ const me = async () => {
     return userInfo.user;
 };
 
+const updateMe = async (name, biography) => {
+    const resp = await apiClient.put('/auth/me', {
+        name,
+        biography,
+    });
+
+    return resp.data;
+};
+
 const authService = {
     login,
     register,
+    updateMe,
 };
 
 export default authService;

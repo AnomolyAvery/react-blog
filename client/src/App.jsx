@@ -6,6 +6,7 @@ import Login from './screens/Login';
 import NewPost from './screens/posts/NewPost';
 import PostDetails from './screens/posts/PostDetails';
 import Register from './screens/Register';
+import Settings from './screens/Settings';
 import Signout from './screens/Signout';
 import UserDetails from './screens/users/UserDetails';
 
@@ -17,6 +18,7 @@ const App = () => {
                 <Route path="/login" element={<Login />} />
                 <Route path="/register" element={<Register />} />
                 <Route path="/signout" element={<Signout />} />
+                <Route path="/settings" element={<Settings />} />
 
                 <Route path="/users/:id" element={<UserDetails />} />
 

@@ -14,6 +14,10 @@ const userSchema = new Schema({
         type: String,
         required: true,
     },
+    biography: {
+        type: String,
+        default: 'Edit your biography @ /settings.',
+    },
     role: {
         type: String,
         required: true,

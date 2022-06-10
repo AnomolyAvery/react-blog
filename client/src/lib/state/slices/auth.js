@@ -68,6 +68,30 @@ export const registerAsync = createAsyncThunk(
     }
 );
 
+export const updateMeAsync = createAsyncThunk(
+    'auth/updateMe',
+    async ({ name, biography }, thunkApi) => {
+        try {
+            const payload = await authService.updateMe(name, biography);
+
+            if (
+                !payload.id ||
+                !payload.name ||
+                !payload.email ||
+                !payload.role
+            ) {
+                return thunkApi.rejectWithValue('Invalid user');
+            }
+
+            return thunkApi.fulfillWithValue(payload);
+        } catch (err) {
+            const msg = getErrorMessage(err);
+
+            return thunkApi.rejectWithValue(msg);
+        }
+    }
+);
+
 const authSlice = createSlice({
     name: 'auth',
     initialState,
@@ -111,6 +135,19 @@ const authSlice = createSlice({
                 state.user = action.payload;
             })
             .addCase(registerAsync.rejected, (state, action) => {
+                state.loading = 'idle';
+                state.error = action.payload;
+            });
+
+        builder
+            .addCase(updateMeAsync.pending, (state) => {
+                state.loading = 'pending';
+            })
+            .addCase(updateMeAsync.fulfilled, (state, action) => {
+                state.loading = 'idle';
+                state.user = action.payload;
+            })
+            .addCase(updateMeAsync.rejected, (state, action) => {
                 state.loading = 'idle';
                 state.error = action.payload;
             });

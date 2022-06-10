@@ -50,6 +50,7 @@ const login = async (req, res) => {
                 name: user.name,
                 email: user.email,
                 role: user.role,
+                biography: user.biography,
             },
         });
     } catch (err) {
@@ -107,6 +108,7 @@ const register = async (req, res) => {
                 name: createdUser.name,
                 email: createdUser.email,
                 role: createdUser.role,
+                biography: createdUser.biography,
             },
         });
     } catch (err) {
@@ -136,6 +138,7 @@ const me = async (req, res) => {
             name: user.name,
             email: user.email,
             role: user.role,
+            biography: user.biography,
         });
     } catch (err) {
         return res.status(500).json({
@@ -144,10 +147,48 @@ const me = async (req, res) => {
     }
 };
 
+/**
+ *
+ * @param {Express.Request} req
+ * @param {Express.Response} res
+ */
+const update = async (req, res) => {
+    try {
+        const { name, biography } = req.body;
+
+        const user = await User.findById(req.user.id);
+
+        if (!user) {
+            return res.status(404).json({
+                message: 'User not found',
+            });
+        }
+
+        if (name) {
+            user.name = name;
+        }
+
+        if (biography) {
+            user.biography = biography;
+        }
+
+        await user.save();
+
+        return res.status(200).json({
+            id: user._id,
+            name: user.name,
+            email: user.email,
+            role: user.role,
+            biography: user.biography,
+        });
+    } catch (err) {}
+};
+
 const authController = {
     login,
     register,
     me,
+    update,
 };
 
 module.exports = authController;
