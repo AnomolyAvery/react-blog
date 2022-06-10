@@ -26,7 +26,7 @@ const UserDetails = () => {
     const dispatch = useDispatch();
 
     useEffect(() => {
-        if (id && !user && loading !== 'pending') {
+        if (id && loading !== 'pending') {
             dispatch(fetchUserAsync(id));
         }
     }, [id]);
